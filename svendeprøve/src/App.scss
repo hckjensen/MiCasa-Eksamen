@@ -1,0 +1,33 @@
+@use "../src/styles/variables.scss" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $poppins;
+
+}
+
+p {
+  font-size: 16px;
+  font-family: $black;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 20px;
+  font-family: $gray;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 24px;
+  font-family: $black;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 32px;
+  font-family: $black;
+  font-weight: 500;
+}

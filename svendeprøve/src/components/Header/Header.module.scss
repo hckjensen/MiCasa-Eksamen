@@ -1,0 +1,20 @@
+@use "../../styles/variables.scss" as *;
+
+.header {
+    position: relative;
+
+    .logo {
+        margin: 50px;
+        height: 200px;
+        width: 300px;
+    }
+
+    .background {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+
+
+}
