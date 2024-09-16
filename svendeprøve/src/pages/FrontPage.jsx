@@ -4,7 +4,7 @@ const FrontPage = () => {
     return (
         <>
             <Layout title="Front Page">
-                <p>Welcome to the front page</p>
+                <p>Under Construction</p>
             </Layout>
         </>
     )
