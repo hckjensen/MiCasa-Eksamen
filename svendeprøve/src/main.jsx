@@ -2,14 +2,17 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { AuthProvider } from './providers/AuthProvider.jsx'
-import { SupabaseProvider } from './providers/SupabaseProvider.jsx'
+import { SupabaseProvider } from './providers/supabaseProvider.jsx'
+import { ContextProvider } from './providers/ContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <SupabaseProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
+      <ContextProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ContextProvider>
     </SupabaseProvider>
   </StrictMode>,
 )

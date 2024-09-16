@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
@@ -15,6 +16,12 @@ export const SupabaseProvider = ({ children }) => {
         </SupabaseContext.Provider>
     );
 };
+
+
+export const useSupabase = () => {
+    return useContext(SupabaseContext);
+};
+
 
 SupabaseProvider.propTypes = {
     children: PropTypes.node.isRequired,
