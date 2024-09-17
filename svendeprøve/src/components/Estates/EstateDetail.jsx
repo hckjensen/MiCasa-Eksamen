@@ -2,24 +2,31 @@ import styles from "./Estates.module.scss";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useEstate } from "../../hooks/useEstates";
+import useCities from "../../hooks/useGetCity";
+import useTypes from "../../hooks/useTypes";
 import DetailHero from "./DetailHero";
 import formatPrice from "../../utils/formatPrice";
 import calculateDaysAgo from "../../utils/dateUtils";
+
 
 const EstateDetail = () => {
 
 
     const { id } = useParams();
-
-
     const { estate, loading } = useEstate(id);
+    const { cities } = useCities();
+    const { types } = useTypes();
+    const [city, setCity] = useState(null);
+    const [type, setType] = useState(null);
 
-    if (estate.length > 0) {
-        console.log(estate[0].address);
-        document.title = `Til salg - ${estate[0].address}, ${estate[0].floor_space} m2, ${formatPrice(estate[0].price)} DKK`;
-    }
-
-
+    // 
+    useEffect(() => {
+        if (estate && estate.length > 0) {
+            setCity(cities.find(city => city.id === estate[0].city_id));
+            setType(types.find(type => type.id === estate[0].type_id));
+            document.title = `Til salg - ${estate[0].address}, ${city?.zipcode} ${city?.name}, ${type?.name}, ${estate[0].floor_space} m2`;
+        }
+    }, [estate, cities, types]);
 
 
 
@@ -33,10 +40,10 @@ const EstateDetail = () => {
                     <section className={`${styles.detailSection} ${styles.topSection}`}>
                         <div className={styles.subSection} >
                             <h1>{estate[0].address}</h1>
-                            <h3>9000 aablorg</h3>
+                            <h3>{city?.zipcode} {city?.name}`</h3>
                             <div className={styles.info}>
 
-                                <h3>"Type"</h3>
+                                <h3>{type?.name}</h3>
                                 <div className={styles.bar}></div>
 
 
@@ -95,11 +102,11 @@ const EstateDetail = () => {
                             </div>
                             <div>
                                 <h4> Byggeår</h4>
-                                <h4>{estate[0].year_constructed}</h4>
+                                <h4>{estate[0].year_construction}</h4>
                             </div>
                             <div>
                                 <h4> Ombygget</h4>
-                                <h4>{estate[0].year_rebuilt}</h4>
+                                <h4>{estate[0].year_rebuilt === '0' ? 'Ikke ombygget' : estate[0].year_rebuilt}</h4>
                             </div>
                             <div>
                                 <h4> Energimærke</h4>
