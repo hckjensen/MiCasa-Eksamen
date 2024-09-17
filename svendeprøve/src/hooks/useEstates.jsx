@@ -17,6 +17,7 @@ const useEstates = (amount) => {
                 .select('*')
                 .limit(amount ? amount : '');
 
+
             if (error) {
                 setError(error);
                 setLoading(false);

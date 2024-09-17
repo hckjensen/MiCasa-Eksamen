@@ -7,7 +7,7 @@ import AdminPage from './pages/AdminPage'
 import SearchPage from './pages/SearchPage'
 import EstatesPage from './pages/EstatesPage'
 import EstateList from './components/Estates/EstateList'
-import EstateDetail from './components/Estates/EstateDetail'
+// import EstateDetail from './components/Estates/EstateDetail'
 
 
 
