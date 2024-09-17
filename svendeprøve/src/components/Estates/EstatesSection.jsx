@@ -1,5 +1,5 @@
 import EstateCard from "./EstateCard";
-import useEstates from "../../hooks/useEstates";
+import { useEstates } from "../../hooks/useEstates";
 import styles from "./Estates.module.scss";
 
 const EstatesSection = () => {

@@ -1,6 +1,6 @@
 import styles from "./Estates.module.scss";
 import EstateCard from "./EstateCard";
-import useEstates from "../../hooks/useEstates";
+import { useEstates } from "../../hooks/useEstates";
 
 
 

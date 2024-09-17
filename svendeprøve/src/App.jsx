@@ -7,7 +7,7 @@ import AdminPage from './pages/AdminPage'
 import SearchPage from './pages/SearchPage'
 import EstatesPage from './pages/EstatesPage'
 import EstateList from './components/Estates/EstateList'
-// import EstateDetail from './components/Estates/EstateDetail'
+import DetailsPage from './pages/DetailsPage'
 
 
 
@@ -31,6 +31,7 @@ function App() {
           <Route path="/boliger" element={<EstatesPage />} >
             <Route index element={<EstateList />} />
           </Route>
+          <Route path="/boliger/:id" element={<DetailsPage />} />
         </Routes>
       </Router>
     </>

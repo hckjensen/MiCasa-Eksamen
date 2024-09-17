@@ -91,3 +91,98 @@ a {
         border-radius: 5px;
     }
 }
+
+
+
+
+
+.detailHero {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    height: 600px;
+    z-index: -100;
+
+    img {
+        width: 100%;
+        height: 700px;
+        object-fit: cover;
+    }
+
+
+
+}
+
+
+.detailWrapper {
+
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 1000px;
+    border-radius: 5px;
+    margin-top: 200px;
+    margin-bottom: 50px;
+    padding: 50px;
+    color: black;
+    box-shadow: 0px 0px 8px 0px #00000040;
+
+    .topSection {}
+
+
+    .detailSection {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 100px;
+
+        .subSection {
+            width: 25%;
+            justify-content: center;
+
+
+            &:nth-child(3) {
+                text-align: right;
+            }
+
+
+
+            div {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+
+
+            }
+
+        }
+
+    }
+
+    .info {
+        width: 50%;
+        margin-bottom: 0 !important;
+
+        .bar {
+            border: 1px solid black;
+            margin-bottom: 0 !important;
+
+        }
+
+
+    }
+
+    .price {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: flex-end !important;
+
+    }
+
+    .icons {
+        display: flex;
+        gap: 10px;
+
+    }
+
+}

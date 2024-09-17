@@ -18,7 +18,7 @@ const EstateCard = ({ estate }) => {
                         <p>{estate.num_rooms} værelser, {estate.floor_space} m2 </p>
                     </div>
                     <div>
-                        <h2>{formatPrice(estate.price)}</h2>
+                        <h2>{formatPrice(estate.price)} DKK</h2>
                     </div>
 
 

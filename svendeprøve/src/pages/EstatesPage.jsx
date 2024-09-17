@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const EstatesPage = () => {
 
-    document.title = "MiCasa | Boliger";
+    document.title = "Boliger | MiCasa Online";
 
 
     return (
