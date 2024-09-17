@@ -6,10 +6,16 @@ import ContactPage from './pages/ContactPage'
 import AdminPage from './pages/AdminPage'
 import SearchPage from './pages/SearchPage'
 import EstatesPage from './pages/EstatesPage'
+import EstateList from './components/Estates/EstateList'
+import EstateDetail from './components/Estates/EstateDetail'
+
+
 
 
 
 function App() {
+
+
 
 
   return (
@@ -22,7 +28,9 @@ function App() {
           <Route path="/kontakt" element={<ContactPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/søg" element={<SearchPage />} />
-          <Route path="/boliger" element={<EstatesPage />} />
+          <Route path="/boliger" element={<EstatesPage />} >
+            <Route index element={<EstateList />} />
+          </Route>
         </Routes>
       </Router>
     </>

@@ -1,6 +1,5 @@
 import styles from "./Reviews.module.scss";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 
 
 const Reviews = () => {
@@ -37,24 +36,27 @@ const Reviews = () => {
                         </div>
                     </div>
                     <section className={`${styles.reviewForm} ${isExpanded ? styles.expanded : ''}`}>
-                        <div className={styles.formContainer}>
-                            <p onClick={handleClick}>X</p>
+                        <div className={`${styles.formWrapper} ${isExpanded ? styles.visible : ''}`}>
+                            <div className={styles.buttonContainer}>
+                                <button className={styles.x} onClick={handleClick}>X</button>
+                            </div>
+
                             <form className={styles.formContent}>
                                 <div>
-                                    <label htmlFor="name">Navn</label>
-                                    <input type="text" id="name" name="name" />
+                                    <label htmlFor="name">Navn:</label>
+                                    <input type="text" id="name" name="name" placeholder="Indtast dit navn" />
                                 </div>
                                 <div>
-                                    <label htmlFor="email">Email</label>
-                                    <input type="email" id="email" name="email" />
+                                    <label htmlFor="email">Email:</label>
+                                    <input type="email" id="email" name="email" placeholder="Indtast din email" />
                                 </div>
                                 <div>
-                                    <label htmlFor="review">Kommentar</label>
-                                    <textarea id="review" name="review" />
+                                    <label htmlFor="review">Kommentar:</label>
+                                    <textarea id="review" name="review" placeholder="Skriv en kommentar" />
                                 </div>
-
-
-                                <button type="submit">Send</button>
+                                <div className={styles.buttonContainer}>
+                                    <button type="submit">Send</button>
+                                </div>
                             </form>
 
                         </div>
