@@ -5,6 +5,7 @@ import formatPrice from "../../utils/formatPrice";
 import { Link } from "react-router-dom";
 import { useCity } from "../../hooks/useGetCity";
 import { useType } from "../../hooks/useTypes";
+import { usePrimaryImage } from "../../hooks/useImages";
 import { ThreeCircles, ThreeDots } from "react-loader-spinner";
 
 
@@ -14,21 +15,23 @@ const EstateCard = ({ estate }) => {
 
     const { type, loading: typeLoading } = useType(estate.type_id);
     const { city, loading: cityLoading } = useCity(estate.city_id);
-
-
+    const { primaryImage, loading: imageLoading } = usePrimaryImage(estate.id);
 
 
     return (
         <Link to={`/boliger/${estate.id}`} className={styles.linkWrapper}>
             <figure className={styles.card}>
-                {cityLoading && typeLoading ? (<div className={styles.spinner}> < ThreeCircles
+                {cityLoading && typeLoading && imageLoading ? (<div className={styles.spinner}> < ThreeCircles
                     size={100}
                     speed={1}
                     color="#59656F"
 
                 /></div>) : (
                     <>
-                        <img src={placeholder} alt={estate.address} />
+                        {primaryImage?.images === undefined ? (<img src={placeholder} alt={estate.address} />) : (
+                            <img src={primaryImage?.images.image_url} alt={estate.address} />
+                        )
+                        }
                         <figcaption className={styles.estateInfoBox}>
                             <div>
                                 <h1>{estate.address}</h1>

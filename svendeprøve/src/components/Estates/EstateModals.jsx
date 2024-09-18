@@ -22,11 +22,11 @@ FloorPlanModal.propTypes = {
     onClose: PropTypes.func
 };
 
-export const GalleryModal = ({ estate, isOpen, onClose }) => {
+export const GalleryModal = ({ isOpen, onClose }) => {
 
 
 
-    const { images, loading, error } = useImages();
+    const { images } = useImages();
 
 
 

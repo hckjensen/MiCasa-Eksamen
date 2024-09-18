@@ -3,7 +3,6 @@ import { useState } from "react";
 import prevSlideIcon from "../../assets/Images/Slideshow/lastSlide.png";
 import nextSlideIcon from "../../assets/Images/Slideshow/nextSlide.png";
 import PropTypes from 'prop-types';
-import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 //https://www.dhiwise.com/post/building-a-responsive-reactjs-slideshow-from-scratch
@@ -20,6 +19,8 @@ const Slideshow = ({ images }) => {
         const nextIndex = (currentIndex + 1) % images.length;
         setCurrentIndex(nextIndex);
     };
+
+    console.log(images);
 
     return (
         <div className={styles.slideshow}>

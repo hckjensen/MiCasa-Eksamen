@@ -39,3 +39,39 @@ export const useImages = () => {
     return { images, loading, error };
 
 };
+
+export const usePrimaryImage = (id) => {
+    const supabase = useSupabase();
+    const [primaryImage, setPrimaryImage] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const fetchPrimaryImage = async () => {
+            setLoading(true);
+            setError(null);
+
+            let { data: primaryImage, error } = await supabase
+                .from('estate_image_rel')
+                .select('images(*)')
+                .eq('estate_id', id)
+                .eq('is_primary', true)
+                .single();
+
+            if (error) {
+                setError(error);
+                setLoading(false);
+                return;
+            }
+
+            setPrimaryImage(primaryImage);
+            setLoading(false);
+        }
+        fetchPrimaryImage();
+
+    }, [supabase]);
+
+    return { primaryImage, loading, error };
+
+}
