@@ -2,6 +2,8 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import styles from "./Modals.module.scss"
 import closeIcon from "../../assets/Images/Icons/closeWhite.png";
+import Slideshow from '../Slideshow/Slideshow';
+import { useImages } from '../../hooks/useImages';
 
 export const FloorPlanModal = ({ estate, isOpen, onClose }) => {
     return (
@@ -21,10 +23,17 @@ FloorPlanModal.propTypes = {
 };
 
 export const GalleryModal = ({ estate, isOpen, onClose }) => {
+
+
+
+    const { images, loading, error } = useImages();
+
+
+
+
     return (
         <Modal className={styles.modal} overlayClassName={styles.overlay} isOpen={isOpen} onRequestClose={onClose}>
-            <h2>Gallery</h2>
-            {/* Render gallery details here */}
+            <Slideshow images={images} />
             <button onClick={onClose}>
                 <img src={closeIcon} alt="X" />
             </button>
