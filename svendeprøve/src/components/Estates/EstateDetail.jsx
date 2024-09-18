@@ -9,10 +9,11 @@ import DetailHero from "./DetailHero";
 import formatPrice from "../../utils/formatPrice";
 import calculateDaysAgo from "../../utils/dateUtils";
 import { ThreeCircles } from "react-loader-spinner";
+import { LocationButton, GalleryButton, LikeButton, LikedButton, FloorplanButton } from "./EstateButtons";
+import { FloorPlanModal, GalleryModal, LocationModal } from './EstateModals';
 
 
 const EstateDetail = () => {
-
 
     const { id } = useParams();
     const { estate, loading } = useEstate(id);
@@ -22,6 +23,17 @@ const EstateDetail = () => {
     const [city, setCity] = useState(null);
     const [type, setType] = useState(null);
     const [employee, setEmployee] = useState(null);
+
+    //Modal states
+    const [isFloorPlanOpen, setIsFloorPlanOpen] = useState(false);
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+    const [isLocationOpen, setIsLocationOpen] = useState(false);
+
+    const toggleFloorPlanModal = () => setIsFloorPlanOpen(!isFloorPlanOpen);
+    const toggleGalleryModal = () => setIsGalleryOpen(!isGalleryOpen);
+    const toggleLocationModal = () => setIsLocationOpen(!isLocationOpen);
+
+
 
 
 
@@ -38,11 +50,15 @@ const EstateDetail = () => {
 
 
 
-    console.log(employee);
+
 
     return (
         <>
+            <FloorPlanModal estate={estate[0]} isOpen={isFloorPlanOpen} onClose={toggleFloorPlanModal} />
+            <GalleryModal estate={estate[0]} isOpen={isGalleryOpen} onClose={toggleGalleryModal} />
+            <LocationModal estate={estate[0]} isOpen={isLocationOpen} onClose={toggleLocationModal} />
             <DetailHero estate={estate[0]} />
+
             <section className={styles.detailWrapper}>
                 {loading ? (
                     <div className={styles.spinner}> < ThreeCircles
@@ -68,10 +84,11 @@ const EstateDetail = () => {
                                     <h3> set {estate[0].num_clicks} gange</h3>
                                 </div>
                                 <div className={`${styles.subSection} ${styles.icons}`}>
-                                    <p> ICONS </p>
-                                    <p> ICONS </p>
-                                    <p> ICONS </p>
-                                    <p> ICONS </p>
+
+                                    <GalleryButton onClick={toggleGalleryModal} />
+                                    <FloorplanButton onClick={toggleFloorPlanModal} />
+                                    <LocationButton onClick={toggleLocationModal} />
+                                    <LikeButton />
                                 </div>
                                 <div className={styles.subSection}>
                                     <div className={styles.price}>

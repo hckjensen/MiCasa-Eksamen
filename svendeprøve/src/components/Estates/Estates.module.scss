@@ -194,10 +194,30 @@ a {
             display: flex;
             gap: 10px;
 
+            button {
+                height: 0;
+                border: none;
+            }
+
+            svg {
+                fill: rgba(255, 255, 255, 0);
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    fill: $rose;
+                }
+
+            }
+
+
         }
+
+
+
+
+
     }
-
-
 
     .mainContent {
         display: flex;
@@ -227,5 +247,4 @@ a {
 
 
     }
-
 }
