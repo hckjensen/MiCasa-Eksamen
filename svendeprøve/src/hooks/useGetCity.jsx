@@ -39,3 +39,42 @@ const useCities = () => {
 export default useCities;
 
 
+
+export const useCity = (id) => {
+
+
+    const supabase = useSupabase();
+    const [city, setCity] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchCity = async () => {
+            setLoading(true);
+            setError(null);
+
+            let { data: city, error } = await supabase
+                .from('cities')
+                .select('*')
+                .eq('id', id);
+
+            if (error) {
+                setError(error);
+                setLoading(false);
+                return;
+            }
+
+            setCity(city);
+            setLoading(false);
+
+        }
+        fetchCity();
+    }, [supabase, id]);
+
+
+
+    return { city, loading, error };
+}
+
+
+
