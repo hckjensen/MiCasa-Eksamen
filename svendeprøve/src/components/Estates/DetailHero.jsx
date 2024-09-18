@@ -1,6 +1,5 @@
 import styles from "./Estates.module.scss";
 import PropTypes from "prop-types";
-import placeholder from "../../assets/Images/Slideshow/slide-3.jpg"
 import { usePrimaryImage } from "../../hooks/useImages";
 import { ThreeCircles } from "react-loader-spinner";
 import { useParams } from "react-router-dom";

@@ -34,7 +34,7 @@ const Slideshow = ({ images }) => {
                 <div key={index} className={`${styles.slide} ${index === currentIndex ? styles.active : ''}`}>
                     <img className={styles.image} src={image.images.image_url} alt={`slide ${index + 1}`} />
                     <div className={styles.description}>
-                        <h1>{image.images.description}</h1>
+                        <h1>{image.images.description ? image.images.description : ""}</h1>
                     </div>
                 </div>
             ))}
