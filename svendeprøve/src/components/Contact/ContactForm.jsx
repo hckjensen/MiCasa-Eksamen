@@ -2,7 +2,7 @@ import styles from './Contact.module.scss';
 import { RotatingLines } from "react-loader-spinner";
 
 import { useEmployees } from '../../providers/ContextProvider';
-import { usePostMessage } from '../../hooks/useContactMessage';
+import { usePostMessage } from '../../hooks/useContactMessage.jsx';
 
 const ContactForm = () => {
 
@@ -21,7 +21,6 @@ const ContactForm = () => {
 
     const employees = useEmployees();
 
-    console.log(employees);
 
 
 

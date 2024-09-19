@@ -92,7 +92,7 @@ export const usePostReview = () => {
         setLoading(true);
         setError(null);
 
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('reviews')
             .insert([
                 {
@@ -140,7 +140,7 @@ export const useDeleteReview = () => {
         setLoading(true);
         setError(null);
 
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('reviews')
             .delete()
             .eq('id', id);

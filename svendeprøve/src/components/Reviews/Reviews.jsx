@@ -11,7 +11,7 @@ const Reviews = () => {
 
 
     const { user } = useAuth();
-    const { postReview, loading, setReview, setName, setTitle, hasCommented, setHasCommented, isActive, setIsActive, isExpanded, setIsExpanded } = usePostReview();
+    const { postReview, loading, setReview, setName, setTitle, hasCommented, isActive, setIsActive, isExpanded, setIsExpanded } = usePostReview();
     const { reviews } = useFetchReviews();
     const [randomReview, setRandomReview] = useState(null);
 

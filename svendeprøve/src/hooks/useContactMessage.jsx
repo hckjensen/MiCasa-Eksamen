@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSupabase } from '../providers/supabaseProvider';
 
 
@@ -12,7 +12,7 @@ export const usePostMessage = () => {
     const [message, setMessage] = useState('');
     const [employeeId, setEmployeeId] = useState('');
     const [hasCommented, setHasCommented] = useState(false);
-   
+
 
 
     const postMessage = async (e) => {
@@ -20,7 +20,7 @@ export const usePostMessage = () => {
         setLoading(true);
         setError(null);
 
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('contact_messages')
             .insert([
                 {
@@ -28,7 +28,7 @@ export const usePostMessage = () => {
                     email: email,
                     employee_id: employeeId,
                     message: message,
-                    
+
                 }
             ]);
 
@@ -53,5 +53,5 @@ export const usePostMessage = () => {
 
     };
 
-    return {  postMessage, loading, error, name, email, message, setName, setEmail, setMessage, hasCommented, setHasCommented, employeeId, setEmployeeId };
+    return { postMessage, loading, error, name, email, message, setName, setEmail, setMessage, hasCommented, setHasCommented, employeeId, setEmployeeId };
 }

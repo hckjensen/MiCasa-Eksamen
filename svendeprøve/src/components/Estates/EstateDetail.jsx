@@ -9,12 +9,15 @@ import DetailHero from "./DetailHero";
 import formatPrice from "../../utils/formatPrice";
 import { calculateDaysAgo } from "../../utils/dateUtils";
 import { ThreeCircles } from "react-loader-spinner";
-import { LocationButton, GalleryButton, LikeButton, LikedButton, FloorplanButton } from "./EstateButtons";
+import { LocationButton, GalleryButton, FavoriteButton, FloorplanButton } from "./EstateButtons";
 import { FloorPlanModal, GalleryModal, LocationModal } from './EstateModals';
+import useFavorites from "../../hooks/useFavorites";
+import { useAuth } from "../../providers/AuthProvider";
 
 
 const EstateDetail = () => {
 
+    const { user } = useAuth();
     const { id } = useParams();
     const { estate, loading } = useEstate(id);
     const { cities } = useCities();
@@ -23,6 +26,18 @@ const EstateDetail = () => {
     const [city, setCity] = useState(null);
     const [type, setType] = useState(null);
     const [employee, setEmployee] = useState(null);
+    const { addFavorite, loading: favoriteLoading, error, removeFavorite, checkIfFavorite, isFavorite } = useFavorites(user?.id, id);
+
+    useEffect(() => {
+        checkIfFavorite();
+    }, [estate, isFavorite]);
+
+
+
+
+
+
+
 
     //Modal states
     const [isFloorPlanOpen, setIsFloorPlanOpen] = useState(false);
@@ -88,7 +103,13 @@ const EstateDetail = () => {
                                     <GalleryButton onClick={toggleGalleryModal} />
                                     <FloorplanButton onClick={toggleFloorPlanModal} />
                                     <LocationButton onClick={toggleLocationModal} />
-                                    <LikeButton />
+                                    <FavoriteButton
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            isFavorite ? removeFavorite(e) : addFavorite(e);
+                                        }}
+                                        isFavorited={isFavorite}
+                                    />
                                 </div>
                                 <div className={styles.subSection}>
                                     <div className={styles.price}>

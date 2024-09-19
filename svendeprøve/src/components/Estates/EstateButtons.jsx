@@ -1,4 +1,7 @@
 
+import PropTypes from 'prop-types';
+
+
 export const LocationButton = ({ onClick }) => {
 
     return (
@@ -16,6 +19,12 @@ export const LocationButton = ({ onClick }) => {
 
 }
 
+LocationButton.propTypes = {
+    onClick: PropTypes.func.isRequired
+}
+
+
+
 export const GalleryButton = ({ onClick }) => {
     return (
         <button onClick={onClick}>
@@ -30,17 +39,45 @@ export const GalleryButton = ({ onClick }) => {
 
 }
 
-export const LikeButton = () => {
-    return (
+GalleryButton.propTypes = {
+    onClick: PropTypes.func.isRequired
+}
 
-        <svg width="84" height="84" viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="83" height="83" rx="41.5" />
-            <rect x="0.5" y="0.5" width="83" height="83" rx="41.5" stroke="#AC9FBB" />
-            <path d="M48.7586 30C45.2828 30 42.8046 33.2051 42 34.8077C41.1954 33.2051 38.7172 30 35.2414 30C30.8966 30 28 33.3654 28 36.7308C28 44.4231 37.3333 49.5513 42 55C46.6667 49.5513 56 44.4231 56 36.7308C56 33.3654 53.1034 30 48.7586 30Z" stroke="#59656F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+export const FavoriteButton = ({ onClick, isFavorited }) => {
+    return (
+        <>
+            {isFavorited ? (
+                <button onClick={onClick}>
+                    <svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="83" height="83" rx="41.5" />
+                        <rect x="0.5" y="0.5" width="83" height="83" rx="41.5" stroke="#AC9FBB" />
+                        <path d="M48.7586 30C45.2828 30 42.8046 33.2051 42 34.8077C41.1954 33.2051 38.7172 30 35.2414 30C30.8966 30 28 33.3654 28 36.7308C28 44.4231 37.3333 49.5513 42 55C46.6667 49.5513 56 44.4231 56 36.7308C56 33.3654 53.1034 30 48.7586 30Z" fill="#DDBDD5" stroke="#1D1E2C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+
+            ) : (
+                <button onClick={onClick}>
+                    <svg width="84" height="84" viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="83" height="83" rx="41.5" />
+                        <rect x="0.5" y="0.5" width="83" height="83" rx="41.5" stroke="#AC9FBB" />
+                        <path d="M48.7586 30C45.2828 30 42.8046 33.2051 42 34.8077C41.1954 33.2051 38.7172 30 35.2414 30C30.8966 30 28 33.3654 28 36.7308C28 44.4231 37.3333 49.5513 42 55C46.6667 49.5513 56 44.4231 56 36.7308C56 33.3654 53.1034 30 48.7586 30Z" stroke="#59656F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+
+            )}
+        </>
+
 
     )
 
+}
+
+
+
+
+FavoriteButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    isFavorited: PropTypes.bool.isRequired
 }
 
 
@@ -69,3 +106,6 @@ export const FloorplanButton = ({ onClick }) => {
     )
 }
 
+FloorplanButton.propTypes = {
+    onClick: PropTypes.func.isRequired
+}
