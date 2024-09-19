@@ -32,8 +32,6 @@ const Slideshow = ({ images, page }) => {
     });
 
 
-    console.log(images);
-
     return (
         <div className={styles.slideshow}>
             {page === "frontpage" ?

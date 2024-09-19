@@ -1,14 +1,29 @@
 import styles from "./Reviews.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoginForm from "../Login/LoginForm";
 import { useAuth } from '../../providers/AuthProvider';
+import { usePostReview, useFetchReviews } from "../../hooks/useReviews";
+import { RotatingLines } from "react-loader-spinner";
+import { formatDate } from "../../utils/dateUtils";
 
 
 const Reviews = () => {
 
-    const [isActive, setIsActive] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(false);
+
     const { user } = useAuth();
+    const { postReview, loading, setReview, setName, setTitle, hasCommented, setHasCommented, isActive, setIsActive, isExpanded, setIsExpanded } = usePostReview();
+    const { reviews } = useFetchReviews();
+    const [randomReview, setRandomReview] = useState(null);
+
+    useEffect(() => {
+
+        const randomReview = reviews[Math.floor(Math.random() * reviews?.length)];
+        setRandomReview(randomReview);
+
+    }, [reviews]);
+
+
+
 
 
     const handleClick = () => {
@@ -25,9 +40,9 @@ const Reviews = () => {
             <section className={styles.reviewSection} >
                 <h1>Det siger vores kunder</h1>
                 <section className={styles.review}>
-                    <h2>Blah Blah</h2>
-                    <p>“Jeg har haft en rigtig god oplevelse med MiCasa. De var hurtige til at finde en køber til min lejlighed og jeg følte mig i trygge hænder hele vejen igennem.”</p>
-                    <p>– Mette, tidligere kunde</p>
+                    <h2>{randomReview?.title}</h2>
+                    <p>{randomReview?.content}</p>
+                    <p>{randomReview?.user_name}, {formatDate(randomReview?.created_at)}</p>
                 </section>
                 <section className={styles.writeReview}>
                     <div className={styles.band}>
@@ -45,19 +60,54 @@ const Reviews = () => {
                             </div>
 
                             {user ? (
-                                <form className={styles.formContent}>
-                                    <div>
-                                        <label htmlFor="name">Navn:</label>
-                                        <input type="text" id="name" name="name" placeholder="Indtast dit navn" />
+                                hasCommented ? (
+                                    <div className={styles.thankYouMessage}>
+                                        <h1>Tak for din anmeldelse!</h1>
+
                                     </div>
-                                    <div>
-                                        <label htmlFor="review">Anmeldelse:</label>
-                                        <textarea id="review" name="review" placeholder="Skriv en anmeldelse" />
-                                    </div>
-                                    <div className={styles.buttonContainer}>
-                                        <button type="submit">Send</button>
-                                    </div>
-                                </form>
+                                ) : (
+
+                                    <form className={styles.formContent}>
+                                        <div>
+                                            <label htmlFor="name">Navn:</label>
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                placeholder="Indtast dit navn"
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+
+                                        </div>
+                                        <div>
+                                            <label htmlFor="title">Overskrift:</label>
+                                            <input
+                                                type="text"
+                                                id="title"
+                                                name="title"
+                                                placeholder="Giv din anmeldelse en overskrift"
+                                                onChange={(e) => setTitle(e.target.value)}
+                                            />
+
+                                        </div>
+                                        <div>
+                                            <label htmlFor="review">Anmeldelse:</label>
+                                            <textarea
+                                                id="review"
+                                                name="review"
+                                                placeholder="Skriv en anmeldelse"
+                                                onChange={(e) => setReview(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className={styles.buttonContainer}>
+                                            <button onClick={postReview} type="submit" disabled={loading}>
+                                                {loading ? <RotatingLines height={10} width={10} /> : 'Send'}
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                )
+
                             ) : (<LoginForm title="Log ind for at skrive en anmeldelse" titleColor="white" />)}
 
 

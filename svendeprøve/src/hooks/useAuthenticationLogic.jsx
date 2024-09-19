@@ -15,7 +15,7 @@ export const useLogout = () => {
 
         } else {
             logout(false);
-            console.log('Logged out successfully');
+
 
         }
         navigate('/login');
@@ -31,13 +31,14 @@ export const useLogin = (page) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoggingIn, setIsLoggingIn] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const checkSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) {
-                console.log('session', session);
+
                 login(session.user);
             }
         };
@@ -57,11 +58,8 @@ export const useLogin = (page) => {
 
         if (error) {
             setError(error.message);
-            console.log('error', error);
-            // setIsLoggingIn(false);
         } else {
 
-            console.log('Logged in successfully:', data);
             setTimeout(() => {
                 setIsLoggingIn(false);
                 if (page === 'login') { navigate('/admin'); }

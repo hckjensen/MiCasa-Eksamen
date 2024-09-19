@@ -7,7 +7,7 @@ import { useTypes } from "../../hooks/useTypes";
 import { useEmployees } from "../../providers/ContextProvider";
 import DetailHero from "./DetailHero";
 import formatPrice from "../../utils/formatPrice";
-import calculateDaysAgo from "../../utils/dateUtils";
+import { calculateDaysAgo } from "../../utils/dateUtils";
 import { ThreeCircles } from "react-loader-spinner";
 import { LocationButton, GalleryButton, LikeButton, LikedButton, FloorplanButton } from "./EstateButtons";
 import { FloorPlanModal, GalleryModal, LocationModal } from './EstateModals';
