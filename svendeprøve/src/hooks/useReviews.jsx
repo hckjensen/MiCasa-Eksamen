@@ -35,7 +35,42 @@ export const useFetchReviews = () => {
     return { reviews, loading, error };
 };
 
-export default useFetchReviews;
+
+
+
+export const useFetchUserReviews = () => {
+    const supabase = useSupabase();
+    const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const { user } = useAuth();
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            setLoading(true);
+            setError(null);
+
+            let { data: reviews, error } = await supabase
+                .from('reviews')
+                .select('*')
+                .eq('user_id', user.id);
+
+            if (error) {
+                setError(error);
+                setLoading(false);
+                return;
+            }
+
+            setReviews(reviews);
+            setLoading(false);
+        };
+        fetchReviews();
+
+    }, [supabase, user]);
+
+
+    return { reviews, loading, error, setReviews };
+};
 
 
 
@@ -93,7 +128,31 @@ export const usePostReview = () => {
 
     };
 
-
-
     return { postReview, loading, error, review, name, title, setReview, setName, setTitle, hasCommented, setHasCommented, isActive, setIsActive, isExpanded, setIsExpanded };
+}
+
+export const useDeleteReview = () => {
+    const supabase = useSupabase();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const deleteReview = async (id) => {
+        setLoading(true);
+        setError(null);
+
+        const { data, error } = await supabase
+            .from('reviews')
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            setError(error);
+            setLoading(false);
+            return;
+        }
+
+        setLoading(false);
+    };
+
+    return { deleteReview, loading, error };
 }

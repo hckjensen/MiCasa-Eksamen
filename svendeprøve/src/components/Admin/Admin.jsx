@@ -1,7 +1,18 @@
 import styles from "./Admin.module.scss"
-
+import { useFetchUserReviews, useDeleteReview } from "../../hooks/useReviews";
+import { formatDate } from "../../utils/dateUtils";
 
 const Admin = () => {
+
+    const { reviews, loading, setReviews } = useFetchUserReviews();
+    const { deleteReview } = useDeleteReview();
+
+    const handleDelete = async (id) => {
+        await deleteReview(id);
+        const updatedReviews = reviews.filter(review => review.id !== id);
+        setReviews(updatedReviews);
+    }
+
 
     return (
 
@@ -17,25 +28,21 @@ const Admin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className={styles.row}>
-
-                            <td>Review 1</td>
-                            <td>01-01-2021</td>
-                            <td className={styles.buttons}>
-                                <button className={styles.edit}>Rediger</button>
-                                <button className={styles.delete}>Slet</button>
-                            </td>
-                        </tr>
-                        <tr className={styles.row}>
-
-                            <td>Review 1</td>
-                            <td>01-01-2021</td>
-                            <td className={styles.buttons}>
-                                <button className={styles.edit}>Rediger</button>
-                                <button className={styles.delete}>Slet</button>
-                            </td>
-                        </tr>
-
+                        {loading ? (
+                            <tr>
+                                <td >Henter anmeldelser...</td>
+                            </tr>) : (
+                            reviews.map(review => (
+                                <tr key={review.id} className={styles.row}>
+                                    <td>{review.title}</td>
+                                    <td>{formatDate(review.created_at)}</td>
+                                    <td className={styles.buttons}>
+                                        <button className={styles.edit}>Rediger</button>
+                                        <button onClick={() => handleDelete(review.id)} className={styles.delete}>Slet</button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </section>

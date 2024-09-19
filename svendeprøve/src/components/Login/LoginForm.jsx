@@ -21,7 +21,7 @@ const LoginForm = ({ title, titleColor, page }) => {
                 </div>
             ) : (
                 <div className={styles.loginForm}>
-                    <h2 style={{ color: titleColor }} >{title}</h2>
+                    <h3 style={{ color: titleColor }} >{title}</h3>
 
                     <form onSubmit={handleLogin}>
                         <input
