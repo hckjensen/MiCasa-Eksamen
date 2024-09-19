@@ -21,7 +21,7 @@
 .frontpageWrapper {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 200px;
     margin-bottom: 150px;
 
     .content {
@@ -29,6 +29,7 @@
         gap: 2rem;
 
         a {
+
 
             &:nth-child(2) {
                 transform: translateY(-50px);

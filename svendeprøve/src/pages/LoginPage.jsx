@@ -1,4 +1,5 @@
 import Layout from "../components/Layout/Layout";
+import LoginForm from "../components/Login/LoginForm";
 
 const LoginPage = () => {
 
@@ -7,7 +8,7 @@ const LoginPage = () => {
     return (
         <>
             <Layout title="Login">
-                <p>Under Construction</p>
+                <LoginForm title="Indtast email og password for at logge ind" titleColor="black" page="login" />
             </Layout>
         </>
     )

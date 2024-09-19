@@ -73,7 +73,7 @@ const FrontPage = () => {
     return (
         <Layout>
             <FrontPageHero>
-                <Slideshow images={slideshowImages} />
+                <Slideshow images={slideshowImages} page="frontpage" />
             </FrontPageHero>
             <EstatesSection />
             <Reviews />

@@ -1,0 +1,72 @@
+.adminWrapper {
+    display: flex;
+    height: 100svh;
+
+    div {
+
+        &:nth-child(2) {
+            margin-left: 50px;
+        }
+    }
+
+
+    .adminSection {
+        border-right: 1px solid black;
+        width: 80%;
+        padding-right: 50px;
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+
+            border-collapse: collapse;
+
+            thead {
+                text-align: left;
+                height: 50px;
+
+                .title {
+                    width: 70%;
+                }
+
+                .date {
+                    width: 20%;
+                }
+            }
+
+
+        }
+    }
+
+    .row {
+        height: 50px;
+
+
+        td {
+            border-top: 1px solid black;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            height: 50px;
+            align-items: center;
+
+            button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 20px;
+            }
+
+            .edit {
+                color: green;
+            }
+
+            .delete {
+                color: red;
+            }
+
+        }
+    }
+}

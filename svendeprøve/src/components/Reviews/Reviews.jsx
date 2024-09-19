@@ -1,11 +1,14 @@
 import styles from "./Reviews.module.scss";
 import { useState } from "react";
+import LoginForm from "../Login/LoginForm";
+import { useAuth } from '../../providers/AuthProvider';
 
 
 const Reviews = () => {
 
     const [isActive, setIsActive] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+    const { user } = useAuth();
 
 
     const handleClick = () => {
@@ -41,23 +44,22 @@ const Reviews = () => {
                                 <button className={styles.x} onClick={handleClick}>X</button>
                             </div>
 
-                            <form className={styles.formContent}>
-                                <div>
-                                    <label htmlFor="name">Navn:</label>
-                                    <input type="text" id="name" name="name" placeholder="Indtast dit navn" />
-                                </div>
-                                <div>
-                                    <label htmlFor="email">Email:</label>
-                                    <input type="email" id="email" name="email" placeholder="Indtast din email" />
-                                </div>
-                                <div>
-                                    <label htmlFor="review">Kommentar:</label>
-                                    <textarea id="review" name="review" placeholder="Skriv en kommentar" />
-                                </div>
-                                <div className={styles.buttonContainer}>
-                                    <button type="submit">Send</button>
-                                </div>
-                            </form>
+                            {user ? (
+                                <form className={styles.formContent}>
+                                    <div>
+                                        <label htmlFor="name">Navn:</label>
+                                        <input type="text" id="name" name="name" placeholder="Indtast dit navn" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="review">Anmeldelse:</label>
+                                        <textarea id="review" name="review" placeholder="Skriv en anmeldelse" />
+                                    </div>
+                                    <div className={styles.buttonContainer}>
+                                        <button type="submit">Send</button>
+                                    </div>
+                                </form>
+                            ) : (<LoginForm title="Log ind for at skrive en anmeldelse" titleColor="white" />)}
+
 
                         </div>
 

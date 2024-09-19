@@ -1,1 +1,44 @@
 @use "../../styles/variables.scss" as *;
+
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        input {
+            padding: 10px;
+            box-shadow: 1px 1px 3px 0px #00000040 inset;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+
+            &:focus {
+                outline: none;
+                border: 2px solid #ccc;
+            }
+        }
+
+
+    }
+}
+
+.button {
+    padding: 10px;
+    background-color: $lavender;
+    color: $black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000026;
+    width: 80px;
+
+
+    &:hover {
+        background-color: $thistle;
+    }
+}
