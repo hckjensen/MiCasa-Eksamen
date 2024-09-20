@@ -42,3 +42,15 @@
     justify-content: center;
     z-index: 9999;
 }
+
+
+
+/* Media queries */
+
+@media (max-width: 500px) {
+    .modal {
+        padding: 1px;
+        width: 800%;
+        height: 50%;
+    }
+}

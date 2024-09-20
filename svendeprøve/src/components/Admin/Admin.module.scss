@@ -70,3 +70,52 @@
         }
     }
 }
+
+
+
+// MEDIA QUERIES
+
+@media (max-width: 500px) {
+    .adminWrapper {
+        // flex-direction: column;
+
+        div {
+            width: 50%;
+            margin: 0;
+        }
+
+        .adminSection {
+            border-right: none;
+            padding-right: 0;
+            width: 80%;
+
+            table {
+                thead {
+                    display: none;
+                }
+
+                tbody {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+            }
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: auto;
+
+            .buttons {
+                display: flex;
+                gap: 10px;
+                height: 50px;
+                font-size: 10px;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

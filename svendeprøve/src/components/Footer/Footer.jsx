@@ -10,34 +10,34 @@ const Footer = ({ navItems }) => {
 
     return (
         <footer className={styles.footer}>
-            <ContentWrapper title="MiCasa">
-                <div className={styles.content}>
-                    <section className={styles.contact}>
-                        <ul>
-                            <li>Øster Uttrupvej 5</li>
-                            <li>9000 Aalborg</li>
-                            <br />
-                            <li>Email: info@homelands.dk</li>
-                            <li>Telefon: +45 1122 3344</li>
+            <h1>Mi Casa</h1>
+            <div className={styles.content}>
+                <section className={styles.contact}>
+                    <ul>
+                        <li>Øster Uttrupvej 5</li>
+                        <li>9000 Aalborg</li>
+                        <br />
+                        <li>Email: info@homelands.dk</li>
+                        <li>Telefon: +45 1122 3344</li>
+                    </ul>
+                </section>
+                <section>
+                    <nav>
+                        <ul className={styles.list}>
+                            {navItems.map((item, index) => {
+                                return (
+                                    <li key={index} className={styles.listItem}>
+                                        <Link to={item.path}>{item.title}</Link>
+                                    </li>
+                                )
+                            })}
                         </ul>
-                    </section>
-                    <section>
-                        <nav>
-                            <ul className={styles.list}>
-                                {navItems.map((item, index) => {
-                                    return (
-                                        <li key={index} className={styles.listItem}>
-                                            <Link to={item.path}>{item.title}</Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </nav>
+                    </nav>
 
-                    </section>
-                    <NewsLetterForm />
-                </div>
-            </ContentWrapper>
+                </section>
+                <NewsLetterForm />
+            </div>
+
         </footer>
     )
 }

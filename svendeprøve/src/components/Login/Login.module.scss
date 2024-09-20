@@ -42,3 +42,21 @@
         background-color: $thistle;
     }
 }
+
+
+/*  Media queries*/
+
+@media (max-width: 500px) {
+    .loginForm {
+        margin-bottom: 50px;
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+
+            input {
+                width: 350px;
+            }
+        }
+    }
+}
