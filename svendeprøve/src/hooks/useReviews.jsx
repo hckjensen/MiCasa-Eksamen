@@ -85,12 +85,47 @@ export const usePostReview = () => {
     const [isActive, setIsActive] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const { user } = useAuth();
+    const [nameError, setNameError] = useState(false);
+    const [titleError, setTitleError] = useState(false);
+    const [reviewError, setReviewError] = useState(false);
+
+
+
 
 
     const postReview = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
+
+        if (name === '') {
+            setNameError(true);
+
+        } else {
+            setNameError(false);
+        }
+
+        if (title === '') {
+            setTitleError(true);
+
+        } else {
+            setTitleError(false);
+        }
+
+        if (review === '') {
+            setReviewError(true);
+
+        } else {
+            setReviewError(false);
+        }
+
+
+
+        if (name === '' || review === '' || title === '') {
+            setError('Udfyld venligst alle felter');
+            setLoading(false);
+            return;
+        }
 
         const { error } = await supabase
             .from('reviews')
@@ -128,7 +163,7 @@ export const usePostReview = () => {
 
     };
 
-    return { postReview, loading, error, review, name, title, setReview, setName, setTitle, hasCommented, setHasCommented, isActive, setIsActive, isExpanded, setIsExpanded };
+    return { postReview, loading, error, review, name, title, setReview, setName, setTitle, hasCommented, setHasCommented, isActive, setIsActive, isExpanded, setIsExpanded, nameError, titleError, reviewError };
 }
 
 export const useDeleteReview = () => {

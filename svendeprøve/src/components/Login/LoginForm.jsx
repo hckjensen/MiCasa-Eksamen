@@ -29,14 +29,14 @@ const LoginForm = ({ title, titleColor, page }) => {
                             placeholder="Indtast din email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
+
                         />
                         <input
                             type="password"
                             placeholder="Indtast dit password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
+
                         />
                         <button className={styles.button} type="submit" disabled={isLoggingIn}>
                             {isLoggingIn ? <RotatingLines height={10} width={10} /> : 'Log ind'}

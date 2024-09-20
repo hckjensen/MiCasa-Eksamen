@@ -51,13 +51,44 @@ export const useLogin = (page) => {
         e.preventDefault();
         setIsLoggingIn(true);
 
+        const validateEmail = (email) => {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        };
+
+        if (!email) {
+            setError('Indtast venligst email');
+            setIsLoggingIn(false);
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setError('Indtast venligst en gyldig email');
+            setIsLoggingIn(false);
+            return;
+        }
+
+        if (!password) {
+            setError('Indtast venglist password');
+            setIsLoggingIn(false);
+            return;
+        }
+
+
+
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password
         });
 
         if (error) {
-            setError(error.message);
+            if (error.status === 400) {
+                setError('Forkert email eller password');
+            } else {
+                setError(error.message);
+            }
+            console.log(error.message);
+            setIsLoggingIn(false);
         } else {
 
             setTimeout(() => {
@@ -74,3 +105,96 @@ export const useLogin = (page) => {
 
     return { email, setEmail, password, setPassword, error, handleLogin, isLoggingIn };
 };
+
+export const useNewsLetterSignUp = () => {
+
+    const supabase = useContext(SupabaseContext);
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [isSigningUp, setIsSigningUp] = useState(false);
+    const [hasSignedUp, setHasSignedUp] = useState(false);
+
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        setIsSigningUp(true);
+        setError(null);
+
+
+        if (email === '') {
+            setError('Indtast venligst din email-adresse');
+
+            setTimeout(() => {
+                setError('');
+                setIsSigningUp(false);
+            }, 3000);
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setError('Indtast venligst en gyldig email-adresse');
+            setIsSigningUp(false);
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+            return;
+        }
+
+
+        const { data: existingEmails, error: fetchError } = await supabase
+            .from('newsletter_emails')
+            .select('email')
+            .eq('email', email)
+
+
+        if (fetchError) {
+
+            setIsSigningUp(false);
+            return;
+        }
+
+        if (existingEmails.length > 0) {
+            setError('Emailen er allerede tilmeldt nyhedsbrevet');
+            setEmail('');
+            setIsSigningUp(false);
+            return;
+        }
+
+        const { error } = await supabase
+            .from('newsletter_emails')
+            .insert([
+                {
+                    email: email
+                }
+            ]);
+
+        if (error) {
+            console.log(error);
+
+            setIsSigningUp(false);
+            return;
+        }
+        else {
+
+            setTimeout(() => {
+                setIsSigningUp(false);
+                setEmail('');
+                setSuccess('Du er nu tilmeldt nyhedsbrevet');
+                setHasSignedUp(true);
+                setTimeout(() => {
+                    setSuccess('');
+                }, 3000);
+            }, 2000);
+        }
+    };
+
+    return { email, setEmail, error, handleSignUp, isSigningUp, hasSignedUp, success, setSuccess };
+
+
+}

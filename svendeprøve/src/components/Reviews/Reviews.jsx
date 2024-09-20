@@ -11,7 +11,7 @@ const Reviews = () => {
 
 
     const { user } = useAuth();
-    const { postReview, loading, setReview, setName, setTitle, hasCommented, isActive, setIsActive, isExpanded, setIsExpanded } = usePostReview();
+    const { error, nameError, titleError, reviewError, postReview, loading, setReview, setName, setTitle, hasCommented, isActive, setIsActive, isExpanded, setIsExpanded } = usePostReview();
     const { reviews } = useFetchReviews();
     const [randomReview, setRandomReview] = useState(null);
 
@@ -76,6 +76,7 @@ const Reviews = () => {
                                                 name="name"
                                                 placeholder="Indtast dit navn"
                                                 onChange={(e) => setName(e.target.value)}
+                                                className={nameError ? styles.error : ''}
                                             />
 
                                         </div>
@@ -87,6 +88,7 @@ const Reviews = () => {
                                                 name="title"
                                                 placeholder="Giv din anmeldelse en overskrift"
                                                 onChange={(e) => setTitle(e.target.value)}
+                                                className={titleError ? styles.error : ''}
                                             />
 
                                         </div>
@@ -97,6 +99,7 @@ const Reviews = () => {
                                                 name="review"
                                                 placeholder="Skriv en anmeldelse"
                                                 onChange={(e) => setReview(e.target.value)}
+                                                className={reviewError ? styles.error : ''}
                                             />
                                         </div>
                                         <div className={styles.buttonContainer}>

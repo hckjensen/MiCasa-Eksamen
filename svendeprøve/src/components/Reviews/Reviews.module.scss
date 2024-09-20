@@ -116,6 +116,10 @@
                         display: flex;
                         justify-content: space-between;
 
+                        .error {
+                            border: red 3px solid;
+                        }
+
                     }
 
                     .buttonContainer {

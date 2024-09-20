@@ -109,6 +109,7 @@ const EstateDetail = () => {
                                             isFavorite ? removeFavorite(e) : addFavorite(e);
                                         }}
                                         isFavorited={isFavorite}
+                                        loading={favoriteLoading}
                                     />
                                 </div>
                                 <div className={styles.subSection}>

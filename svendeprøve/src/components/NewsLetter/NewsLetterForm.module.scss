@@ -16,6 +16,28 @@
     }
 }
 
+.validation {
+
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .success {
+        color: white;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    p {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+}
+
 
 .container {
     display: flex;
@@ -71,6 +93,8 @@
 
 
     }
+
+
 
 
 }

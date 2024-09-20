@@ -36,7 +36,10 @@ const useFavorites = (user_id, estate_id) => {
         else {
 
             setFavorite(true);
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+
 
         }
 
@@ -61,7 +64,9 @@ const useFavorites = (user_id, estate_id) => {
         else {
 
             setFavorite(false);
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
         }
     }
 
@@ -69,7 +74,7 @@ const useFavorites = (user_id, estate_id) => {
         setLoading(true);
         setError(null);
 
-        let { data: favorites, error } = await supabase
+        const { data: favorites, error } = await supabase
             .from('favorites')
             .select('*')
             .eq('estate_id', estate_id)
