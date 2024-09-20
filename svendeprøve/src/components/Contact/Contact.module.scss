@@ -173,3 +173,54 @@
         }
     }
 }
+
+
+
+
+/* media queries*/
+
+@media (max-width: 500px) {
+
+
+    .contactWrapper {
+
+        flex-direction: column;
+
+        gap: 2rem;
+        margin-top: 100px;
+        margin-left: 20px;
+
+        .contactForm {
+
+            width: 90%;
+
+            input {
+                width: 100%;
+            }
+
+            select {
+                width: 100%;
+            }
+
+            textarea {
+                width: 100%;
+            }
+
+            .buttonContainer {
+                width: 100%;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        .map {
+            width: 80%;
+        }
+
+
+    }
+
+
+}

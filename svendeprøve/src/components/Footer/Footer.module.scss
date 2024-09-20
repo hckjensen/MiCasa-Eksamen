@@ -56,3 +56,35 @@ nav {
         }
     }
 }
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 500px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 50px 20px;
+        align-items: left;
+
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 20px;
+
+        section {
+            width: 100%;
+        }
+    }
+
+
+    nav {
+        .list {
+            flex-direction: row;
+            gap: 20px;
+        }
+    }
+}

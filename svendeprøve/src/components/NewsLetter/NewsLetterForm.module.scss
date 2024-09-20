@@ -98,3 +98,27 @@
 
 
 }
+
+
+/* Media queries */
+
+@media (max-width: 500px) {
+    .newsLetterForm {
+
+
+
+
+        .wrapper {
+            width: 100%;
+
+            text-align: left;
+
+        }
+    }
+
+    .container {
+        width: 100%;
+    }
+
+
+}

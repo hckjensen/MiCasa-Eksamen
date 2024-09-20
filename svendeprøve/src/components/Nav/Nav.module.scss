@@ -33,3 +33,61 @@
     }
 
 }
+
+
+/* media queries */
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+
+        position: fixed;
+        top: 35px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+
+
+    }
+
+
+    .nav {
+        position: fixed;
+        width: 400px;
+        height: 100%;
+        top: 0;
+        right: -400px;
+        z-index: 1000;
+        background-color: $black;
+        transition: right 0.5s ease;
+
+        &.open {
+            right: 0;
+        }
+
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            margin: 60px 0;
+            list-style: none;
+
+            .listItem {
+                font-size: 30px;
+                padding: 20px;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    transition: color 0.3s;
+                    user-select: none;
+                }
+            }
+        }
+    }
+}

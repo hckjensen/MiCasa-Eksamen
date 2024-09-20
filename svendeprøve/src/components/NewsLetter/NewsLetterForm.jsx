@@ -9,8 +9,6 @@ const NewsLetterForm = () => {
 
     const { email, setEmail, error, handleSignUp, isSigningUp, success } = useNewsLetterSignUp();
 
-    console.log(email);
-
     return (
         <section className={styles.newsLetterForm}>
             <div className={styles.wrapper}>

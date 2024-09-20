@@ -71,3 +71,16 @@
     }
 
 }
+
+/* MEDIA QUERIES */
+
+@media (max-width: 500px) {
+    .staff {
+        margin: 50px 0;
+
+        .grid {
+            flex-direction: column;
+            gap: 50px;
+        }
+    }
+}

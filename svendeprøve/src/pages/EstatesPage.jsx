@@ -1,6 +1,7 @@
 import Layout from "../components/Layout/Layout";
 import { Outlet } from "react-router-dom";
 
+
 const EstatesPage = () => {
 
     document.title = "Boliger | MiCasa Online";
@@ -8,7 +9,7 @@ const EstatesPage = () => {
 
     return (
         <>
-            <Layout title="Boliger til salg">
+            <Layout title="Boliger til salg" >
                 <Outlet />
             </Layout>
         </>

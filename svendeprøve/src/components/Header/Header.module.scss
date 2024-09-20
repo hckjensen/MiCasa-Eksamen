@@ -2,8 +2,15 @@
 
 .header {
     position: relative;
-    height: 300px;
+    height: 150px;
     z-index: 100;
+    background-image: url("../../assets/Images/headerBG.png");
+    background-position: center;
+    background-size: cover;
+
+    .hamburger {
+        display: none;
+    }
 
 
     .headerContent {
@@ -16,6 +23,8 @@
             height: 40px;
             margin: 50px;
 
+
+
         }
 
     }
@@ -25,15 +34,57 @@
         height: 150px;
         width: 400px;
         user-select: none;
+        cursor: pointer;
 
     }
 
-    .background {
-        position: absolute;
-        height: 50%;
+
+}
+
+
+/* media queries*/
+
+
+@media (max-width: 500px) {
+    .header {
+        position: fixed;
         width: 100%;
-        z-index: -1;
+        height: 100px;
+        background-image: none;
+        background-color: $black;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+
+
+
+
+        .logo {
+            height: 50px;
+            width: 100px;
+            margin: 0 20px;
+
+        }
+
+        .headerContent {
+            height: 100%;
+
+            padding: 0;
+
+            .right {
+
+                margin: 0;
+                margin-right: 30px;
+            }
+
+            .left,
+            .right {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+
+
+
+            }
+        }
     }
-
-
 }

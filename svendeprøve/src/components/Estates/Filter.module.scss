@@ -1,0 +1,16 @@
+@use "../../styles/variables.scss" as *;
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+
+    div {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+}

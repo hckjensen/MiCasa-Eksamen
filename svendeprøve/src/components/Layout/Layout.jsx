@@ -5,7 +5,8 @@ import Footer from '../Footer/Footer';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../providers/AuthProvider';
 
-const Layout = ({ children, title }) => {
+
+const Layout = ({ children, title, headerContent }) => {
 
     const { user } = useAuth();
 
@@ -32,9 +33,11 @@ const Layout = ({ children, title }) => {
 
     return (
         <div className={styles.layout}>
+
             <Header navItems={navItems} />
             <main>
-                <ContentWrapper title={title}>
+
+                <ContentWrapper title={title} headerContent={headerContent}>
                     {children}
                 </ContentWrapper>
             </main>
@@ -46,7 +49,8 @@ const Layout = ({ children, title }) => {
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
-    title: PropTypes.string
+    title: PropTypes.string,
+    headerContent: PropTypes.node
 }
 
 export default Layout;

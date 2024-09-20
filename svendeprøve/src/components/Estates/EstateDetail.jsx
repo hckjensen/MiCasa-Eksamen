@@ -13,6 +13,7 @@ import { LocationButton, GalleryButton, FavoriteButton, FloorplanButton } from "
 import { FloorPlanModal, GalleryModal, LocationModal } from './EstateModals';
 import useFavorites from "../../hooks/useFavorites";
 import { useAuth } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 
 const EstateDetail = () => {
@@ -27,7 +28,7 @@ const EstateDetail = () => {
     const [type, setType] = useState(null);
     const [employee, setEmployee] = useState(null);
     const { addFavorite, loading: favoriteLoading, error, removeFavorite, checkIfFavorite, isFavorite } = useFavorites(user?.id, id);
-
+    const navigate = useNavigate();
     useEffect(() => {
         checkIfFavorite();
     }, [estate, isFavorite]);
@@ -85,7 +86,7 @@ const EstateDetail = () => {
                 ) : (
                     <>
                         <section className={styles.topSection}>
-                            <section className={styles.detailSection}>
+                            <section className={`${styles.detailSection} ${styles.mainInfo}`}>
                                 <div className={styles.subSection}>
                                     <h1>{estate[0].address}</h1>
                                     <h3>{city?.zipcode} {city?.name}</h3>
@@ -107,6 +108,7 @@ const EstateDetail = () => {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             isFavorite ? removeFavorite(e) : addFavorite(e);
+                                            !user && navigate('/login');
                                         }}
                                         isFavorited={isFavorite}
                                         loading={favoriteLoading}

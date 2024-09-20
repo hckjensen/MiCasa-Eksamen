@@ -15,7 +15,7 @@ export const useEstates = (amount) => {
             let { data: estates, error } = await supabase
                 .from('estates')
                 .select('*')
-                .limit(amount ? amount : '');
+                .limit(amount ? amount : '')
 
 
             if (error) {

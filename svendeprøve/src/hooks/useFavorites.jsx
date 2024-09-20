@@ -87,15 +87,15 @@ const useFavorites = (user_id, estate_id) => {
         }
 
         if (favorites.length > 0) {
-            console.log("This is a favorite");
+
 
             setFavorite(true);
-            console.log(isFavorite);
+
 
         } else {
-            console.log("This is not a favorite");
+
             setFavorite(false);
-            console.log(isFavorite);
+
 
 
         }
